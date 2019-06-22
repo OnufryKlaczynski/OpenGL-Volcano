@@ -85,10 +85,6 @@ int main(){
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-	glEnableVertexAttribArray(0);
-	// texture coord attribute
 	
 
 
@@ -128,7 +124,7 @@ int main(){
 		ourShader.setMat4("model", model);
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glVertexAttribPointer(
 			0,                  // attribute
 			3,                  // size
@@ -138,17 +134,7 @@ int main(){
 			(void*)0            // array buffer offset
 		);
 
-		// 2nd attribute buffer : UVs
-		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-		glVertexAttribPointer(
-			1,                                // attribute
-			2,                                // size
-			GL_FLOAT,                         // type
-			GL_FALSE,                         // normalized?
-			0,                                // stride
-			(void*)0                          // array buffer offset
-		);
+		
 		glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 		
 		glDisableVertexAttribArray(0);
